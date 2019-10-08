@@ -26,14 +26,19 @@ class _HomePageState extends State<HomePage> {
 
 Widget _callPage(int paginaActual){
         switch(paginaActual){
-          case 0: return CategoriasHome();
-          case 1: return PerfilPage();
+          case 2: return PerfilPage();
+          case 1: return CategoriasHome();
+          // case 0: return ;
+          
         }
 }
 
 Widget _navegationBar(){
 
   return BottomNavigationBar(
+    // unselectedItemColor: Colors.blue,
+    iconSize: 33,
+    selectedItemColor: Colors.amber[400],
     currentIndex: currentIndex,
     onTap: (index){
         setState(() {
@@ -46,15 +51,15 @@ Widget _navegationBar(){
         BottomNavigationBarItem(
 
           icon: Icon(Icons.library_books),
-          title: Text('Favorite'),
+          title: Container(),
         ),
           BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          title: Text('Home'),
+          title: Container(),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          title: Text('Perfil'),
+          title: Container(),
         ),
       
       ],

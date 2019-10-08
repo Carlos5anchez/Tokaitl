@@ -238,6 +238,22 @@ Widget _topApp(){
                           width: 120,
                           height: 50,
                           color: Colors.green,
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                  width: 50,
+                                  height: 50,
+                               
+                                child:  FadeInImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('assets/icon/coin.gif'),
+                                  placeholder: AssetImage('assets/coin.gif'),
+                                  fadeInDuration: Duration(milliseconds: 2),
+                                
+                                ),
+                                            )
+                            ],
+                          ),
                         )
                       ]
                     )
