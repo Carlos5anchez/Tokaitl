@@ -1,4 +1,5 @@
 import  'package:flutter/material.dart';
+
 import 'package:responsive_container/responsive_container.dart';
  
 class CategoriasHome extends StatelessWidget {
@@ -19,8 +20,7 @@ class CategoriasHome extends StatelessWidget {
             SizedBox(height: 10.0,),
             _creacionResponsiva('assets/perrito.png','Animales','Yolkáme',20,255,246,235,255),
              SizedBox(height: 10.0,),
-            _creacionResponsiva('assets/perrito.png','Animales','Yolkáme',20,255,246,235,255),
-          SizedBox(height: 10.0,),
+        
         
           
         ],
@@ -36,7 +36,7 @@ Widget _creacionResponsiva(String foto,String nombre,String traduccion, int pala
     widthPercent: 95,
     child: Stack(
     children: <Widget>[
-
+        
         ResponsiveContainer(
           heightPercent: 100,
           widthPercent: 100,
@@ -141,7 +141,7 @@ Widget _creacionResponsiva(String foto,String nombre,String traduccion, int pala
                          
                             textColor: Colors.white,
                              splashColor: Colors.white,
-                             color: Colors.blue,
+                             color: Color.fromRGBO(0, 189,222,1),
                              
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.center,
@@ -194,12 +194,17 @@ Widget _creacionResponsiva(String foto,String nombre,String traduccion, int pala
 }
 Widget _topApp(){
   return   Container(
+ 
             height: 250,
             width: 100,
-            // color: Colors.red,
+
             child: 
                 Stack(
+                  
                   children: <Widget>[
+                  _circulo(-110.0,-30.0,110.0,255,213,78), 
+                   _circulo(340.0,580.0,85.0,244,180,43), 
+                    
                     Row(
                     children:<Widget>[
                         ResponsiveContainer(
@@ -212,20 +217,23 @@ Widget _topApp(){
                               mainAxisAlignment:MainAxisAlignment.end,
                               
                             children:<Widget> [
+                              
                               ResponsiveContainer(
                               widthPercent: 100,
-                              heightPercent: 21,
-                            child: Container(
-                                color: Colors.orange,
+                              heightPercent: 16,
+                             child:  Container(
+                              //  color: Colors.purple,
+                               child: Text('! Hola, Carlos !', textScaleFactor:1.6,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700]),textAlign: TextAlign.center,),
+                             )
                             ),
-                            ),
+                            
                             ResponsiveContainer(
                               widthPercent: 80,
                               heightPercent: 5,
                               
                             child: Container(
                                 padding: EdgeInsets.fromLTRB(0, 7, 40, 0),
-                                color: Colors.white,
+                              //  color: Colors.purple,
                                 child: Text('Categorias', textScaleFactor:1.8,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700]),textAlign: TextAlign.center,),
                             ),
                             ),
@@ -234,11 +242,12 @@ Widget _topApp(){
                         ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(60, 0, 0, 100),
+                          margin: EdgeInsets.fromLTRB(80, 0, 0, 110),
                           width: 120,
                           height: 50,
-                          color: Colors.green,
+                          // color: Colors.green,
                           child: Row(
+                             
                             children: <Widget>[
                               Container(
                                   width: 50,
@@ -251,7 +260,16 @@ Widget _topApp(){
                                   fadeInDuration: Duration(milliseconds: 2),
                                 
                                 ),
-                                            )
+                                            ),
+                                            Container(
+                                              alignment: Alignment.bottomLeft,
+                                              height: 40,
+                                              width: 70,
+                                              // color: Colors.yellow,
+                                              child: 
+                                              
+                                              Text('1,000',style:TextStyle(fontWeight: FontWeight.w600,color: Color.fromRGBO(0, 210, 156, 1)),textAlign:TextAlign.left,textScaleFactor: 1.4,),
+                                            ),
                             ],
                           ),
                         )
@@ -262,4 +280,15 @@ Widget _topApp(){
                 ),
              
           );
+}
+
+Widget _circulo(double x,double y,double diametro,int r1,int g1, int b1){
+  return Transform.translate(
+      offset: Offset(x, y),
+      child: Material(
+        color: Color.fromARGB(255,r1, g1, b1),
+        child: Padding(padding: EdgeInsets.all(diametro)),
+        shape: CircleBorder(side: BorderSide(color: Colors.transparent, width: 15.0)),
+      ),
+    );
 }

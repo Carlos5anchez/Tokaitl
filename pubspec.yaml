@@ -20,6 +20,7 @@ dependencies:
   flutter_launcher_icons: "^0.7.3"
   responsive_container: ^0.0.1
   http: ^0.12.0+2
+  rxdart: ^0.22.3
   flutter:
     sdk: flutter
 
@@ -35,7 +36,7 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+    
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
