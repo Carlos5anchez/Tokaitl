@@ -9,25 +9,7 @@ class _ChatDetailsState extends State<ChatDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(15.0),
-        child: AppBar(
-          backgroundColor: Color.fromRGBO(251, 215, 143, 1),
-          automaticallyImplyLeading: false,
-          title: Stack(
-            children: <Widget>[
-              Positioned(
-                bottom: 0.0,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios, color: Color.fromRGBO(252, 252, 252, 1)),
-                  iconSize: 32.0,
-                  onPressed: () {},
-                ),
-              )
-            ],
-          ),
-        )
-      ),
+     
       body: Stack(
         children: <Widget>[
           Container(

@@ -1,10 +1,12 @@
 
+import 'package:Toikatl/src/pages/perfil_page.dart';
 import 'package:flutter/material.dart';
 
 
 import 'categorias_page.dart';
-import 'login_page.dart';
-import 'package:Toikatl/src/pages/Registro.dart';
+import 'chat.dart';
+
+
 
 class HomePage extends StatefulWidget {
 
@@ -27,9 +29,9 @@ class _HomePageState extends State<HomePage> {
 
 Widget _callPage(int paginaActual){
        switch(paginaActual){
-          case 2: return Login();
+          case 2: return PerfilPage();
           case 0: return CategoriasHome();
-          case 1: return Registro();
+          case 1: return ChatDetails();
           
         }
         return Container();
@@ -53,11 +55,11 @@ Widget _navegationBar(){
         
         BottomNavigationBarItem(
 
-          icon: Icon(Icons.library_books),
+          icon: Icon(Icons.category),
           title: Container(),
         ),
           BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.chat),
           title: Container(),
         ),
         BottomNavigationBarItem(

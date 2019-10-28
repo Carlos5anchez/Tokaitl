@@ -141,7 +141,7 @@ Widget _creacionResponsiva(String foto,String nombre,String traduccion, int pala
                          
                             textColor: Colors.white,
                              splashColor: Colors.white,
-                             color: Color.fromRGBO(0, 189,222,1),
+                             color: Colors.blue[400],
                              
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.center,

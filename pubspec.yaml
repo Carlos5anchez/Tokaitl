@@ -19,7 +19,7 @@ environment:
 dependencies:
   flutter_launcher_icons: "^0.7.3"
   responsive_container: ^0.0.1
-  http: ^0.12.0+2
+  percent_indicator: ^2.1.1+1
   rxdart: ^0.22.3
   flutter:
     sdk: flutter

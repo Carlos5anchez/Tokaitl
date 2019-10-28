@@ -10,8 +10,6 @@ void main()=>runApp(
   Provider(
   child: 
   MaterialApp(
- 
-  //  home: HomePage(),
    debugShowCheckedModeBanner: false,
    initialRoute: '/',
    routes: getObtenerRutas(),

@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:Toikatl/blocs/provider Registro.dart';
 
-class Registro extends StatelessWidget {
-  
+
+
+class Registro extends StatefulWidget {
+
+  @override
+  _RegistroState createState() => _RegistroState();
+}
+
+class _RegistroState extends State<Registro> {
+  final formKey=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-     final bloc= Provider.of(context);
-    return Scaffold(
+    
+    return  Scaffold(
     
       body: Stack(children: <Widget>[
            _circulo(-110.0,-30.0,110.0,252,216,144), 
            _circulo(330.0,680.0,110.0,252,216,144), 
      SingleChildScrollView(
         
-        child: Column(
+        child: Form(
+          key: formKey,
+          child:Column(
           
          children: <Widget>[
            SafeArea(
@@ -21,22 +31,25 @@ class Registro extends StatelessWidget {
                height: 40,
              ),
            ),
-       
+     
             _titulo(context),
             SizedBox( height: 30,),
-            _inputDatos(context,bloc),
-            _inputCorreo(context,bloc),
-            _inputNumero(context,bloc),
-           _inputNumero2(context,bloc),
+            _inputDatos(context),
+            _inputCorreo(context),
+            _inputNumero(context),
+           _inputNumero2(context),
           SizedBox( height: 70,),
-           _botonesAceptar(context,bloc),
+           _botonesAceptar(context),
             SizedBox( height: 25,),
             _botonesCancelar(context),
          ],
         ),
+        )
       ),
-     ],)
+     ],
+     )
   
+    
     );
    
   }
@@ -50,136 +63,144 @@ class Registro extends StatelessWidget {
   
       width: medida.width * 0.6,
       height: medida.height * 0.10,
-      child: Text("iRegistro!", style: TextStyle(fontSize: 40, color: Color.fromRGBO(0, 210, 156, 1.0)),),
+      child: Text("iRegistro!", style: TextStyle(fontSize: 40,color: Color.fromRGBO(0, 139, 202, 1.0)),),
     );
    
   }
 
-
-  Widget _inputNumero(BuildContext context,RegistroBloc bloc){
+  Widget _inputNumero(BuildContext context){
     
     final medida=MediaQuery.of(context).size;
-        return  StreamBuilder(
-            stream: bloc.escuchaPassword ,
-           
-            builder: (BuildContext context, AsyncSnapshot snapshot){
-              return Container(
+        return   Container(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       width: medida.width * .70,
                     
                     
-                      child: TextField(
+                      child: TextFormField(
+                        obscureText: true,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                         focusColor: Colors.blue,
-                         counterText: snapshot.data,
-                         errorText: snapshot.error,
+                      
                         hintText: '****',
                         labelText: 'PIN',
                         labelStyle: TextStyle(color: Colors.black),
                         hintStyle: TextStyle(color: Colors.black12),
                         ),
-                         onChanged: bloc.cambioPassword,
+                      validator: (value){
+                        if(value.length<4 || value.length>4){
+                            return 'Ingrese un PIN de 4 digitos';
+                        }
+                        else{
+                          return null;
+                        }
+                      },
                       ),
    
-                       );
-            },
+           
           );
     
   }
-  Widget _inputNumero2(BuildContext context,RegistroBloc bloc){
+
+  Widget _inputNumero2(BuildContext context){
     
     final medida=MediaQuery.of(context).size;
 
-    return StreamBuilder(
-      stream: bloc.escuchaPassword2 ,
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-       return Container(
+    return  Container(
               padding: EdgeInsets.symmetric(vertical: 15),
               width: medida.width * .70,
             
             
-              child: TextField(
+              child: TextFormField(
+                  obscureText: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: InputDecoration(         
                 focusColor: Colors.blue,
-                counterText: snapshot.data,
-                errorText: snapshot.error,
                 hintText: '****',
                 labelText: 'Confirmar PIN',
                 labelStyle: TextStyle(color: Colors.black),
                 hintStyle: TextStyle(color: Colors.black12),
                 ),
-                onChanged: bloc.cambioPassword2,
+                validator: (value){
+                  if(value.length<4 || value.length>4){
+                            return 'Ingrese un PIN de 4 digitos';
+                        }
+                        else{
+                          return null;
+                        }
+                }
               ),
-   
+  
     );
-      },
-    );
-    
+      
   }
 
-  Widget _inputCorreo(BuildContext context,RegistroBloc bloc){
+  Widget _inputCorreo(BuildContext context){
     
     final medida=MediaQuery.of(context).size;
-    return StreamBuilder(
-      stream: bloc.escuchaCorreo ,
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-         return Container(
+    return  Container(
                 padding: EdgeInsets.symmetric(vertical: 15),
                 width: medida.width * .70,
               
               
-                child: TextField(
+                child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                   focusColor: Colors.blue,
-                  counterText: snapshot.data,
-                  errorText: snapshot.error,
+                 
                   hintText: 'ejemplo@ejeomlo.com',
                   labelText: 'Correo',
                   labelStyle: TextStyle(color: Colors.black),
                   hintStyle: TextStyle(color: Colors.black12),
                   ),
-                  onChanged: bloc.cambioCorreo,
+                 validator: (value){
+               Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = RegExp(pattern);
+
+                  if(regExp.hasMatch(value)){
+                    return null;
+                  }
+                  else{
+                    return('Ingresa un correo valido');
+                  }
+                 },
                 ),
    
     );
-      },
-    );
-    
-
+      
   }
-  Widget _inputDatos(BuildContext context,RegistroBloc bloc){
+
+  Widget _inputDatos(BuildContext context){
     
     final medida=MediaQuery.of(context).size;
-    return StreamBuilder(
-      stream: bloc.escuchaUsuario ,
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-        return Container(
+    return  Container(
                 padding: EdgeInsets.symmetric(vertical: 15),
                 width: medida.width * .70,
               
               
-                child: TextField(
+                child: TextFormField(
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                   focusColor: Colors.blue,
-                  counterText: snapshot.data,
-                   errorText: snapshot.error,
+              
                   hintText: 'Ej. Cmsm2305',
                   labelText: 'Usuario',
                   labelStyle: TextStyle(color: Colors.black),
                   hintStyle: TextStyle(color: Colors.black12),
                   ),
-                  onChanged: bloc.cambioUsuario,
-                ),
-            
+                validator: (value){
+                  value=value.trim();
+                   if( value.length<8 || value.length>8){
+                            return 'Ingrese un usuario de 8 digitos alfanumerico';
+                        }
+                        else{
+                          return null;
+                        }
+                },
+                )
+          
+      
     );
-      },
-    );
-    
-
   }
 
   Widget _circulo(double x,double y,double diametro,int r1,int g1, int b1){
@@ -192,16 +213,12 @@ class Registro extends StatelessWidget {
       ),
     );
   }
-}
-Widget _botonesAceptar(BuildContext context,RegistroBloc bloc){
+
+Widget _botonesAceptar(BuildContext context){
   final medida=MediaQuery.of(context).size;
-  return StreamBuilder(
-    stream: bloc.formValidStream2 ,
-  
-    builder: (BuildContext context, AsyncSnapshot snapshot){
-       return RaisedButton(
+  return RaisedButton(
    
-              color: Color.fromRGBO(0, 189,222,1),
+              color:Color.fromRGBO(0, 139, 202, 1.0),
               textColor: Colors.white,
               child: Container(
               width: medida.width * 0.40,
@@ -211,13 +228,16 @@ Widget _botonesAceptar(BuildContext context,RegistroBloc bloc){
                 
                 child: Text('Aceptar',textScaleFactor: 1.3,textAlign: TextAlign.center,),
               ),
-              onPressed:
-              snapshot.hasData ?()=>_registro(bloc) : null
+              onPressed:(){
+                _submit();
+              }
+            
             );
-    },
-  );
+   
+
  
 }
+
 Widget _botonesCancelar(BuildContext context){
   
   final medida=MediaQuery.of(context).size;
@@ -239,12 +259,12 @@ Widget _botonesCancelar(BuildContext context){
   );
 }
 
- _registro(RegistroBloc bloc){
-
-  print('=======');
-  print('${bloc.usuario}');
-  print('${bloc.email}');
-  print('${bloc.pass}');
-    print('${bloc.pass2}');
+void _submit(){
+  if(!formKey.currentState.validate()){
+      return;
+  }
   
+
 }
+}
+

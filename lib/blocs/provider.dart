@@ -2,6 +2,8 @@ import 'package:Toikatl/blocs/bloc_login.dart';
 export 'package:Toikatl/blocs/bloc_login.dart';
 import 'package:flutter/material.dart';
 
+
+
 class Provider extends InheritedWidget{
 
 final loginBloc = LoginBloc();
@@ -16,7 +18,7 @@ Provider({Key key,Widget child})
     static LoginBloc of (BuildContext context){
     return (context.inheritFromWidgetOfExactType(Provider) as Provider).loginBloc;
   }
-  
+
 
 
 

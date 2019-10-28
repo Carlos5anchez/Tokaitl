@@ -1,3 +1,5 @@
+
+
 import 'package:Toikatl/blocs/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +52,7 @@ class Login extends StatelessWidget {
   
       width: medida.width * 0.6,
       height: medida.height * 0.10,
-      child: Text("iBienvenido!", style: TextStyle(fontSize: 40, color: Color.fromRGBO(0, 210, 156, 1.0)),),
+      child: Text("iBienvenido!", style: TextStyle(fontSize: 40, color: Color.fromRGBO(0, 139, 202, 1.0)),),
     );
    
   }
@@ -70,6 +72,7 @@ class Login extends StatelessWidget {
                   child: 
                   TextField(
                     keyboardType: TextInputType.number,
+                    obscureText: true,
                     decoration: InputDecoration(
                     focusColor: Colors.blue,
                      counterStyle: TextStyle(color:Colors.blue),
@@ -79,6 +82,7 @@ class Login extends StatelessWidget {
                     errorText: snapshot.error,
                     labelStyle: TextStyle(color: Colors.black),
                     hintStyle: TextStyle(color: Colors.black12),
+                   
                     ),
                     onChanged: bloc.cambioPassword,
                   ),
@@ -146,7 +150,7 @@ Widget _botonesLogin(BuildContext context,LoginBloc bloc){
     builder: (BuildContext context, AsyncSnapshot snapshot){
       return RaisedButton(
    
-              color: Color.fromRGBO(0,189,222 ,1),
+              color:  Color.fromRGBO(0, 139, 202, 1.0),
               textColor: Colors.white,
               child: Container(
               width: medida.width * 0.40,
@@ -157,7 +161,7 @@ Widget _botonesLogin(BuildContext context,LoginBloc bloc){
                 child: Text('Ingresar',textScaleFactor: 1.3,textAlign: TextAlign.center,),
               ),
               onPressed:
-              snapshot.hasData ?()=>_login(bloc) : null
+              snapshot.hasData ?()=>_login(bloc,context) : null
               
             );
     }
@@ -170,7 +174,7 @@ Widget _botonesRegistro(BuildContext context,LoginBloc bloc){
   final medida=MediaQuery.of(context).size;
   return RaisedButton(
    
-    color: Color.fromRGBO(207,78,95 ,1),
+    color: Color.fromRGBO(224,48,90 ,1),
     textColor: Colors.white,
     child: Container(
      width: medida.width * 0.40,
@@ -187,8 +191,8 @@ Widget _botonesRegistro(BuildContext context,LoginBloc bloc){
   );
 }
 
-_login(LoginBloc bloc){
-
+_login(LoginBloc bloc,context){
+  Navigator.pushNamed(context, '/Home');
   print('=======');
   print('${bloc.email}');
   print('${bloc.pass}');
