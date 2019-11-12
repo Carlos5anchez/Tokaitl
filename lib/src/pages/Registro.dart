@@ -217,7 +217,7 @@ class _RegistroState extends State<Registro> {
 Widget _botonesAceptar(BuildContext context){
   final medida=MediaQuery.of(context).size;
   return RaisedButton(
-   
+               shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
               color:Color.fromRGBO(0, 139, 202, 1.0),
               textColor: Colors.white,
               child: Container(
@@ -242,7 +242,7 @@ Widget _botonesCancelar(BuildContext context){
   
   final medida=MediaQuery.of(context).size;
   return RaisedButton(
-   
+    shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
     color: Color.fromRGBO(207,78,95 ,1),
     textColor: Colors.white,
     child: Container(

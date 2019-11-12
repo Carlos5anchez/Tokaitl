@@ -146,10 +146,11 @@ class Login extends StatelessWidget {
 Widget _botonesLogin(BuildContext context,LoginBloc bloc){
   final medida=MediaQuery.of(context).size;
   return StreamBuilder(
+    
     stream: bloc.formValidStream ,
     builder: (BuildContext context, AsyncSnapshot snapshot){
       return RaisedButton(
-   
+    shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
               color:  Color.fromRGBO(0, 139, 202, 1.0),
               textColor: Colors.white,
               child: Container(
@@ -173,7 +174,7 @@ Widget _botonesRegistro(BuildContext context,LoginBloc bloc){
   
   final medida=MediaQuery.of(context).size;
   return RaisedButton(
-   
+    shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
     color: Color.fromRGBO(224,48,90 ,1),
     textColor: Colors.white,
     child: Container(

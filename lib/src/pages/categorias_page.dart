@@ -13,12 +13,12 @@ class CategoriasHome extends StatelessWidget {
         //Ruta,nombre,traduccion,numero de palabras,color de caja en argb
             SizedBox(height: 10.0,),
             
-            _creacionResponsiva('assets/ave.png','Animales','Yolkáme',20,255,255,253,235),
+            _creacionResponsiva(context,'assets/ave.png','Animales','Yolkáme',20,255,255,253,235),
         
             SizedBox(height: 10.0,),
-            _creacionResponsiva('assets/pajaro.png','Colores','Yolkáme',20,255,222,248,247),
+            _creacionResponsiva(context,'assets/pajaro.png','Colores','Yolkáme',20,255,222,248,247),
             SizedBox(height: 10.0,),
-            _creacionResponsiva('assets/perrito.png','Animales','Yolkáme',20,255,246,235,255),
+            _creacionResponsiva(context,'assets/perrito.png','Animales','Yolkáme',20,255,246,235,255),
              SizedBox(height: 10.0,),
         
         
@@ -28,7 +28,7 @@ class CategoriasHome extends StatelessWidget {
   }
 }
 
-Widget _creacionResponsiva(String foto,String nombre,String traduccion, int palabras,int a,int r,int g, int b){
+Widget _creacionResponsiva(BuildContext context,String foto,String nombre,String traduccion, int palabras,int a,int r,int g, int b){
 
   return ResponsiveContainer(
      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -152,7 +152,9 @@ Widget _creacionResponsiva(String foto,String nombre,String traduccion, int pala
                             
                              ),
                           
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'Niveles');
+                            },
   
                           )
                       
@@ -203,7 +205,7 @@ Widget _topApp(){
                   
                   children: <Widget>[
                   _circulo(-110.0,-30.0,110.0,255,213,78), 
-                   _circulo(340.0,580.0,85.0,244,180,43), 
+                  //  _circulo(340.0,580.0,85.0,244,180,43), 
                     
                     Row(
                     children:<Widget>[

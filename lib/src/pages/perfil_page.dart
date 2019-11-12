@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:percent_indicator/percent_indicator.dart';
 
+
+
 class PerfilPage extends StatelessWidget {
 
   @override
@@ -14,7 +16,7 @@ class PerfilPage extends StatelessWidget {
           
         //Ruta,nombre,traduccion,numero de palabras,color de caja en argb
             SizedBox(height: 10.0,),
-          _bottom(context),
+             _bottom(context),
           
         ],
       );
@@ -34,7 +36,7 @@ Widget _topApp(context){
                 Stack(
                   
                   children: <Widget>[
-                  _circulo(55,-70.0,110.0,255,213,78), 
+                  _circulo(55,10.0,110.0,255,253,235), 
                 
                      Container(
                        margin: EdgeInsets.fromLTRB(0, 180, 0, 0),
@@ -42,7 +44,7 @@ Widget _topApp(context){
                       width: 330,
                       height: 30,
                       // color: Colors.yellow,
-                      child:  Text('! Hola, Carlos !', textScaleFactor:1.8,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700])),
+                     
                         
                           ),
                     
@@ -58,22 +60,31 @@ Widget _bottom(context){
   return Container(
     alignment: Alignment.center,
     width: medida.width*1,
-   height: medida.height*.65,
+   
     // color: Colors.red,
     child: Column(
       
       children: <Widget>[
-        SizedBox(height: 40.0,),
+        SizedBox(height: 10.0,),
 
 
         Container(
           alignment: Alignment.topLeft,
           width:  medida.width,
-          height: medida.height*.50,
+         
           // color: Colors.purple,
           child: Column(
          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+             Container(
+              alignment: Alignment.centerLeft,
+              child:    Text('Nombre', textScaleFactor:1.5,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700]),),
+            ),
+             Container(
+              alignment: Alignment.centerLeft,
+              child:     Text('Carlos Manuel Sanchez Martinez', textScaleFactor:1.5,),
+            ),
+              SizedBox(height: 40.0,),
             Container(
               alignment: Alignment.centerLeft,
               child:    Text('Correo', textScaleFactor:1.5,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700]),),
@@ -85,27 +96,31 @@ Widget _bottom(context){
             SizedBox(height: 40.0,),
                Container(
               alignment: Alignment.centerLeft,
-              child:      Text('Monedas', textScaleFactor:1.5,style: TextStyle(fontWeight: FontWeight.w500),),
+              child:      Text('Monedas', textScaleFactor:1.5,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700]),),
             ),
                Container(
               alignment: Alignment.centerLeft,
               child:     Text('1000', textScaleFactor:1.5),
             ),
+             SizedBox(height: 20.0,),
+              Container(
+              alignment: Alignment.centerLeft,
+              child:      Text('Progreso', textScaleFactor:1.5,style: TextStyle(fontWeight: FontWeight.w900,color: Colors.grey[700]),),
+            ),
+            _progresoCategoria(context,'Animales',0.6),
 
-            _progresoCategoria(context,'Escuela'),
-            
-            _progresoCategoria(context,'Animales'),
-
-             _progresoCategoria(context,'Animales'),
-
+             _progresoCategoria(context,'Escuela',0.4),
+               _progresoCategoria(context,'Escuela',1),
+                 
+           
 
           ],
         ),
         ),
         
-    
+     SizedBox(height: 40.0,),
         RaisedButton(
-   
+              shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
               color:  Color.fromRGBO(207,78,95 ,1),
               textColor: Colors.white,
               child: Container(
@@ -127,36 +142,64 @@ Widget _bottom(context){
   );
 }
 Widget _circulo(double x,double y,double diametro,int r1,int g1, int b1){
-  return Transform.translate(
+  return 
+  Stack(
+    children: <Widget>[
+    Transform.translate(
       offset: Offset(x, y),
       child: Material(
-        color: Color.fromARGB(255,r1, g1, b1),
+        
+        color: Colors.transparent,
         child: Padding(padding: EdgeInsets.all(diametro)),
-        shape: CircleBorder(side: BorderSide(color: Colors.transparent, width: 15.0)),
+         shape: CircleBorder(side: BorderSide(color: Colors.transparent, width: 15.0)),
+        
       ),
-    );
+    ),
+    Container(
+      width: 200,
+      height: 200,
+      margin: EdgeInsets.fromLTRB(65, 10, 0, 0),
+      child: 
+            FadeInImage(
+                    fit: BoxFit.scaleDown,
+                    image: AssetImage('assets/axolotl1.png'),
+                    placeholder: AssetImage('assets/carga.gif'),
+                    fadeInDuration: Duration(milliseconds: 200),
+                  
+                  ),
+                  
+    )
+    ],
+  )
+  ;
 }
 
 
-Widget _progresoCategoria(context,String nombre){
-  final medida=MediaQuery.of(context).size;
+Widget _progresoCategoria(context,String nombre,double porcentaje){
+  
+  final porcentaje2=porcentaje*100;
   return Container(
     child: Column(
       children: <Widget>[
-        
-            SizedBox(height: 40.0,),
+          SizedBox(height: 10.0,),
+           
                Container(
               alignment: Alignment.centerLeft,
               child:    Text('$nombre', textScaleFactor:1.5,style: TextStyle(fontWeight: FontWeight.w500)),
             ),  
             Container(
               alignment: Alignment.centerLeft,
-              child: LinearPercentIndicator(
-                width: medida.width*.8,
-                lineHeight: 14.0,
-                percent: 0.2,
-                backgroundColor: Colors.grey,
-                progressColor: Colors.blue,
+              child:  LinearPercentIndicator(
+                width: MediaQuery.of(context).size.width - 60,
+                animation: true,
+                lineHeight: 25.0,
+                animationDuration: 500,
+                percent: porcentaje,
+              
+                center: Text("$porcentaje2%",style: TextStyle(color: Colors.white,fontWeight:FontWeight.w700)),
+                linearStrokeCap: LinearStrokeCap.roundAll,
+                progressColor: Color.fromRGBO(97, 159, 204, 1),
+                backgroundColor: Color.fromRGBO(228, 228, 228, 1),
               ),
             ),
       ],
