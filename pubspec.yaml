@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter_launcher_icons: "^0.7.3"
   responsive_container: ^0.0.1
+  intro_slider: ^2.2.8
 
   rxdart: ^0.22.3
   curved_navigation_bar: ^0.3.1

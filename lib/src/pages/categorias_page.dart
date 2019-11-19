@@ -1,3 +1,7 @@
+
+
+
+import 'package:Toikatl/src/pages/home_page.dart';
 import  'package:flutter/material.dart';
 
 import 'package:responsive_container/responsive_container.dart';
@@ -8,7 +12,7 @@ class CategoriasHome extends StatelessWidget {
     return  ListView(
         children: <Widget>[
           
-            _topApp(),
+            _topApp(context),
           
         //Ruta,nombre,traduccion,numero de palabras,color de caja en argb
             SizedBox(height: 10.0,),
@@ -194,7 +198,7 @@ Widget _creacionResponsiva(BuildContext context,String foto,String nombre,String
 
   );
 }
-Widget _topApp(){
+Widget _topApp(BuildContext context){
   return   Container(
  
             height: 250,
@@ -243,6 +247,13 @@ Widget _topApp(){
                           ),
                         ),
                         ),
+
+                         GestureDetector(
+                         onTap: (){
+                          print("Container clicked");
+                          _monedas(context);
+                          },
+                        child:
                         Container(
                           margin: EdgeInsets.fromLTRB(80, 0, 0, 110),
                           width: 120,
@@ -251,6 +262,7 @@ Widget _topApp(){
                           child: Row(
                              
                             children: <Widget>[
+
                               Container(
                                   width: 50,
                                   height: 50,
@@ -263,6 +275,8 @@ Widget _topApp(){
                                 
                                 ),
                                             ),
+
+                                          
                                             Container(
                                               alignment: Alignment.bottomLeft,
                                               height: 40,
@@ -272,9 +286,11 @@ Widget _topApp(){
                                               
                                               Text('1,000',style:TextStyle(fontWeight: FontWeight.w600,color: Color.fromRGBO(0, 210, 156, 1)),textAlign:TextAlign.left,textScaleFactor: 1.4,),
                                             ),
+                                             
                             ],
                           ),
                         )
+                    )
                       ]
                     )
                       
@@ -284,6 +300,46 @@ Widget _topApp(){
           );
 }
 
+Future<void> _monedas(BuildContext context) {
+  final medida=MediaQuery.of(context).size;
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return Padding(
+       padding: EdgeInsets.fromLTRB(10, 160, 10, 140),
+       
+        child:  Card(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const ListTile(
+            leading: Icon(Icons.album),
+            title: Text('The Enchanted Nightingale'),
+            subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+          ),
+          ButtonTheme.bar(
+            child: ButtonBar(
+              children: <Widget>[
+                FlatButton(
+                  child: const Text('BUY TICKETS'),
+                  onPressed: () { 
+                      Navigator.pushNamed(context, '/Home');
+                  },
+                ),
+                FlatButton(
+                  child: const Text('LISTEN'),
+                  onPressed: () { /* ... */ },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
+      );
+    },
+  );
+}
 Widget _circulo(double x,double y,double diametro,int r1,int g1, int b1){
   return Transform.translate(
       offset: Offset(x, y),
