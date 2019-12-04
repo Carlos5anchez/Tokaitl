@@ -1,7 +1,7 @@
 
 
 
-import 'package:Toikatl/src/pages/home_page.dart';
+
 import  'package:flutter/material.dart';
 
 import 'package:responsive_container/responsive_container.dart';
@@ -301,7 +301,7 @@ Widget _topApp(BuildContext context){
 }
 
 Future<void> _monedas(BuildContext context) {
-  final medida=MediaQuery.of(context).size;
+ 
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -317,8 +317,7 @@ Future<void> _monedas(BuildContext context) {
             title: Text('The Enchanted Nightingale'),
             subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
           ),
-          ButtonTheme.bar(
-            child: ButtonBar(
+         ButtonBar(
               children: <Widget>[
                 FlatButton(
                   child: const Text('BUY TICKETS'),
@@ -332,7 +331,7 @@ Future<void> _monedas(BuildContext context) {
                 ),
               ],
             ),
-          ),
+         
         ],
       ),
     )
