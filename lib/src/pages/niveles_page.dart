@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_container/responsive_container.dart';
 
 
 class Niveles extends StatelessWidget {
@@ -52,5 +53,14 @@ class Niveles extends StatelessWidget {
       )
     );
 
+        )
+        )
+        ),
+      
+
+      )
+      
+    );
+    
   }
 }

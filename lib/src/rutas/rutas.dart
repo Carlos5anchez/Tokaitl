@@ -1,5 +1,6 @@
 import 'package:Toikatl/src/pages/Registro.dart';
 import 'package:Toikatl/src/pages/chat.dart';
+import 'package:Toikatl/src/pages/game.dart';
 import 'package:Toikatl/src/pages/home_page.dart';
 import 'package:Toikatl/src/pages/login_page.dart';
 import 'package:Toikatl/src/pages/niveles_page.dart';
@@ -16,5 +17,6 @@ return<String,WidgetBuilder>{
       'Registro' : (BuildContext context)=> Registro(),
       '/Chat' : (BuildContext context)=> ChatDetails(),
       'Niveles' : (BuildContext context)=> Niveles(),
+      '/Juego' : (BuildContext context)=> Game(),
 };
 }
