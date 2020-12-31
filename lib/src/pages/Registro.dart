@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-
-
+import 'package:http/http.dart' as http;
 class Registro extends StatefulWidget {
 
   @override
@@ -10,6 +8,19 @@ class Registro extends StatefulWidget {
 
 class _RegistroState extends State<Registro> {
   final formKey=GlobalKey<FormState>();
+final usuario = TextEditingController();
+final correo = TextEditingController();
+final pin = TextEditingController();
+final pin2 = TextEditingController();
+@override
+  void dispose() {
+    // Limpia el controlador cuando el Widget se descarte
+    usuario.dispose();
+    correo.dispose();
+    pin.dispose();
+    pin2.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +106,7 @@ class _RegistroState extends State<Registro> {
                           return null;
                         }
                       },
+                      controller: pin,
                       ),
    
            
@@ -128,7 +140,9 @@ class _RegistroState extends State<Registro> {
                         else{
                           return null;
                         }
-                }
+                },
+                  controller: pin2,
+                
               ),
   
     );
@@ -164,6 +178,7 @@ class _RegistroState extends State<Registro> {
                     return('Ingresa un correo valido');
                   }
                  },
+                   controller: correo,
                 ),
    
     );
@@ -173,7 +188,7 @@ class _RegistroState extends State<Registro> {
   Widget _inputDatos(BuildContext context){
     
     final medida=MediaQuery.of(context).size;
-    return  Container(
+    return   Container(
                 padding: EdgeInsets.symmetric(vertical: 15),
                 width: medida.width * .70,
               
@@ -194,14 +209,16 @@ class _RegistroState extends State<Registro> {
                             return 'Ingrese un usuario de 8 digitos alfanumerico';
                         }
                         else{
-                          return null;
-                        }
-                },
-                )
-          
-      
+                       }
+                 },
+                   controller: usuario,
+                ),
+   
     );
+      
   }
+  
+  
 
   Widget _circulo(double x,double y,double diametro,int r1,int g1, int b1){
   return Transform.translate(
@@ -229,6 +246,11 @@ Widget _botonesAceptar(BuildContext context){
                 child: Text('Aceptar',textScaleFactor: 1.3,textAlign: TextAlign.center,),
               ),
               onPressed:(){
+
+                // print(usuario.text);
+                //  print(pin.text);
+                //   print(pin2.text);
+                //    print(correo.text);
                 _submit();
               }
             
@@ -259,11 +281,28 @@ Widget _botonesCancelar(BuildContext context){
   );
 }
 
-void _submit(){
+void _submit() async{
   if(!formKey.currentState.validate()){
       return;
   }
+var usuarioEnviar=usuario.text;
+var pinEnviar=pin.text;
+var pin2Enviar=pin2.text;
+var correoEnviar=correo.text;
+
+if (pinEnviar==pin2Enviar){
+  var url = 'http://tokailt.herokuapp.com/users/signup';
+  var response = await http.post(url, body: {'username': '$usuarioEnviar', 'email': '$correoEnviar','pin':'$pinEnviar'});
+  print("----------------");
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    if(response.statusCode==200){
+     Navigator.pushNamed(context, '/');
+    }
+}
   
+
+
 
 }
 }

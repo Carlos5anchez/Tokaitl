@@ -1,20 +1,32 @@
-
-
-
-import 'package:Toikatl/src/pages/home_page.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 import  'package:flutter/material.dart';
 
 import 'package:responsive_container/responsive_container.dart';
  
-class CategoriasHome extends StatelessWidget {
+class CategoriasHome extends StatefulWidget {
+
+  @override
+  _CategoriasHomeState createState() => _CategoriasHomeState();
+}
+
+class _CategoriasHomeState extends State<CategoriasHome> {
   @override
   Widget build(BuildContext context) {
+    // var consulta=_consulta();
+    //   consulta.then((val) {
+    //   print(val[0]);
+    // });
+    
+  
     return  ListView(
         children: <Widget>[
           
             _topApp(context),
           
         //Ruta,nombre,traduccion,numero de palabras,color de caja en argb
+
+      
             SizedBox(height: 10.0,),
             
             _creacionResponsiva(context,'assets/ave.png','Animales','Yolkáme',20,255,255,253,235),
@@ -158,6 +170,7 @@ Widget _creacionResponsiva(BuildContext context,String foto,String nombre,String
                           
                             onPressed: () {
                               Navigator.pushNamed(context, 'Niveles');
+                              
                             },
   
                           )
@@ -301,7 +314,7 @@ Widget _topApp(BuildContext context){
 }
 
 Future<void> _monedas(BuildContext context) {
-  final medida=MediaQuery.of(context).size;
+ 
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -349,4 +362,19 @@ Widget _circulo(double x,double y,double diametro,int r1,int g1, int b1){
         shape: CircleBorder(side: BorderSide(color: Colors.transparent, width: 15.0)),
       ),
     );
+}
+
+
+Future _consulta()async{
+   
+ 
+    var url = "https://tokailt.herokuapp.com/game/categories";
+
+  // Await the http get response, then decode the json-formatted responce.
+  var response = await http.get(url);
+
+     var jsonResponse = convert.jsonDecode(response.body);
+    var itemCount = jsonResponse['data'];
+    // print(itemCount);
+  return itemCount;
 }

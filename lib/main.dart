@@ -11,7 +11,7 @@ void main()=>runApp(
   child: 
   MaterialApp(
    debugShowCheckedModeBanner: false,
-   initialRoute: '/Home',
+   initialRoute: '/',
    routes: getObtenerRutas(),
    
    )

@@ -6,6 +6,13 @@ class ChatDetails extends StatefulWidget {
 }
 
 class _ChatDetailsState extends State<ChatDetails> {
+   final myController = TextEditingController();
+   @override
+  void dispose() {
+    // Limpia el controlador cuando el Widget se descarte
+    myController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +58,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                 keyboardType: TextInputType.text,
                 
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 25.0),//here your padding
+                  contentPadding: EdgeInsets.only(left: 25.0),
                   hintText: 'Escribe una palabra',
                   filled: true,
                   border: OutlineInputBorder(
@@ -62,6 +69,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                   fillColor: Color.fromRGBO(246, 235, 255, 1),
 
                 ),
+                // controller: myController,
               ),
             ),
           )
